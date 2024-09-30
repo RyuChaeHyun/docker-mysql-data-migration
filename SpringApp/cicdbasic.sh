@@ -11,10 +11,11 @@ mkdir -p $DEPLOY_DIR
 cp $JAR_FILE $DEPLOY_DIR/
 
 # Spring Boot 애플리케이션 재시작
-# 기존 8080 포트 사용 중인 프로세스 종료 (lsof 대신 다른 방법 사용)
-PID=$(netstat -tlnp | grep :8080 | awk '{print $7}' | cut -d'/' -f1)
+# 기존 8080 포트 사용 중인 프로세스 종료 (netstat 대신 다른 방법 사용)
+PID=$(ps aux | grep '[S]pringApp-0.0.1-SNAPSHOT.jar' | awk '{print $2}')
 if [ ! -z "$PID" ]; then
     kill $PID
+    sleep 5  # 프로세스가 완전히 종료될 때까지 대기
 fi
 
 # 백그라운드에서 새로 실행
