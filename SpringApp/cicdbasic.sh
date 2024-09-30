@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 # 변수 설정
 JAR_FILE="/home/username/appjardir/SpringApp-0.0.1-SNAPSHOT.jar"
 DEPLOY_DIR="/home/username/step07cicd"
